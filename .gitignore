@@ -1,0 +1,24 @@
+# Node.js dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# OS-specific files
+.DS_Store    # macOS
+Thumbs.db    # Windows
+
+# Coverage folder
+coverage/
+
+# npm package lock files
+package-lock.json
+
+# IDE and editor files
+.vscode/
+
+# Docker related files (optional)
+docker-compose.override.yml
