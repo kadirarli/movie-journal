@@ -35,4 +35,7 @@ if (process.env.NODE_ENV !== 'test') {
 const movieRoutes = require('./routes/MovieRoutes');
 app.use('/api/movies', movieRoutes);
 
+const userRoutes = require('./routes/UserRoutes');
+app.use('/api/users', userRoutes);
+
 module.exports = app;
