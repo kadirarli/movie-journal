@@ -8,6 +8,7 @@ This project is aimed at developing an application that allows users to record, 
 - MongoDB database connection.
 - RESTful API endpoints.
 - Tests using Jest and Supertest.
+- Integrated TMDB API for movie search and details fetching.
 
 ## Getting Started
 
