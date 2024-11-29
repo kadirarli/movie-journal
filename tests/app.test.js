@@ -1,9 +1,9 @@
 const request = require('supertest');
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const app = require('../src/app');
 
 afterAll(async () => {
-    // disconnect MongoDB 
+    // disconnect MongoDB
     await mongoose.connection.close();
   });
 

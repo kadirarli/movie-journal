@@ -43,7 +43,7 @@ MONGO_URI=mongodb://localhost:27017/movie-journal  # The URI used to connect to 
 To start the application, run the following command:
 
 ```bash
-node src/app.js
+npm run start
 ```
 
 This will start the Express application and connect to the MongoDB database.
