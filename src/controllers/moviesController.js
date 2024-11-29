@@ -1,4 +1,5 @@
 const Movie = require('../models/movie');
+const { getMovieDetails } = require('../services/tmdbService');
 
 // Get all movies
 exports.getAllMovies = async (req, res) => {
@@ -43,5 +44,25 @@ exports.deleteMovie = async (req, res) => {
     res.status(200).json({ message: 'Movie deleted successfully' });
   } catch (error) {
     res.status(500).json({ message: 'Error deleting movie', error });
+  }
+};
+
+// Movie search and genre fetch
+exports.getMovieByTitle = async (req, res) => {
+  try {
+      const movieTitle = req.params.title;
+      const movieDetails = await getMovieDetails(movieTitle);
+
+      if (!movieDetails) {
+        throw new Error('Movie not found');
+      }
+
+      const newMovie = new Movie(movieDetails);
+
+      await newMovie.save();
+
+      res.status(200).json(newMovie);
+  } catch (error) {
+      res.status(500).json({ message: 'Unable to fetch movie details' });
   }
 };

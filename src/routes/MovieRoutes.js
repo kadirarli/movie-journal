@@ -7,4 +7,6 @@ router.post('/', moviesController.createMovie);
 router.put('/:id', moviesController.updateMovie);
 router.delete('/:id', moviesController.deleteMovie);
 
+router.get('/tmdb/:title', moviesController.getMovieByTitle);
+
 module.exports = router;

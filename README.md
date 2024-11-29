@@ -31,14 +31,21 @@ npm install
 Create a .env file in the root directory of the project and add the following variables:
 
 ```bash
-PORT=3000          # Specifies the port the application will run on.
-MONGO_URI=mongodb://localhost:27017/movie-journal  # The URI used to connect to the MongoDB database.
-
+PORT=3000
+MONGO_URI=mongodb://localhost:27017/movie-journal
+TMDB_API_KEY=your_tmdb_api_key_here
 ```
 - PORT: Specifies the port the application will run on.
 - MONGO_URI: The URI used to connect to the MongoDB database.
-
-
+- TMDB_API_KEY: The TMDb (The Movie Database) API key, required for external API integration.
+  - TMDb API Integration:
+  - By integrating the TMDb API, we can allow users to easily add movie information. For example, a user can simply enter a movie title, and we can fetch the relevant information from TMDb and save it.
+  - Register for an API key on TMDb:
+    - Visit TMDb's official website: https://www.themoviedb.org/
+    - Create an account and log in.
+    - Go to the "API" section and obtain an API key.
+  - Don't forget to add the API key to your .env file.
+    
 ### 4. Start the Application
 To start the application, run the following command:
 
