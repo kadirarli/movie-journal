@@ -49,7 +49,21 @@ JWT_SECRET=your_jwt_secret_key_here
   - Don't forget to add the API key to your .env file.
 - **JWT_SECRET**: Used to sign and verify JWT tokens for secure authentication and authorization. Keep this key private and do not share it publicly.
 
-### 4. Start the Application
+### 4. CORS Configrution
+The following configuration enables Cross-Origin Resource Sharing (CORS) for the backend:
+
+```bash
+app.use(cors({
+    origin: 'http://localhost:3001', 
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
+```
+- **origin**: React app URL.
+- **methods**: Allowed HTTP methods (GET, POST, PUT, DELETE).
+- **credentials**: Enables cookies and headers for authentication.
+
+### 5. Start the Application
 To start the application, run the following command:
 
 ```bash

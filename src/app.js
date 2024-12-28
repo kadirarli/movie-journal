@@ -1,9 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 require('dotenv').config();
 const app = express();
+
+// CORS settings
+app.use(cors({
+  origin: 'http://localhost:3000',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+  credentials: true
+}));
 
 //Middleware
 app.use(bodyParser.json());
@@ -37,5 +45,8 @@ app.use('/api/movies', movieRoutes);
 
 const userRoutes = require('./routes/UserRoutes');
 app.use('/api/users', userRoutes);
+
+const favoritesRoutes = require('./routes/FavoritesRoutes');
+app.use('/api/favorites', favoritesRoutes);
 
 module.exports = app;

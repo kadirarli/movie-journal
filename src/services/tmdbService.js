@@ -24,26 +24,41 @@ const getMovieDetails = async (movieTitle) => {
             }
         });
 
-        const movie = response.data.results[0]; // get first movie
-        if (!movie) {
+        const movies = response.data.results; // get all movies
+        if (!movies || movies.length === 0) {
             throw new Error('Movie not found');
         }
 
         const genres = await getGenres();
 
-        let movieGenres = '';
-        if (movie.genre_ids && movie.genre_ids.length > 0) {
-            movieGenres = movie.genre_ids.map(genreId => {
-                const genre = genres.find(g => g.id === genreId);
-                return genre ? genre.name : 'Unknown';
-            }).join(', ');
-        }
+        console.log(movies);
 
-        return {
-            title: movie.title,
-            releasedYear: movie.release_date.split('-')[0],
-            genres: movieGenres,
-        };
+        const processedMovies = movies.map((movie) => {
+            let movieGenres = '';
+            if (movie.genre_ids && movie.genre_ids.length > 0) {
+                movieGenres = movie.genre_ids
+                    .map((genreId) => {
+                        const genre = genres.find((g) => g.id === genreId);
+                        return genre ? genre.name : 'Unknown';
+                    })
+                    .join(', ');
+            }
+
+            return {
+                id: movie.id,
+                title: movie.title,
+                releaseDate: movie.release_date ? movie.release_date.split('-')[0] : 'Unknown',
+                genres: movieGenres,
+                overview: movie.overview,
+                originalLanguage: movie.original_language,
+                originalTitle: movie.original_title,
+                posterPath: movie.poster_path, //https://image.tmdb.org/t/p/w500/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg
+                voteAverage: movie.vote_average,
+                voteCount: movie.vote_count
+            };
+        });
+
+        return processedMovies;
 
     } catch (error) {
         throw new Error('Unable to fetch movie details');

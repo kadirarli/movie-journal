@@ -57,11 +57,7 @@ exports.getMovieByTitle = async (req, res) => {
         throw new Error('Movie not found');
       }
 
-      const newMovie = new Movie(movieDetails);
-
-      await newMovie.save();
-
-      res.status(200).json(newMovie);
+      res.status(200).json({results: movieDetails});
   } catch (error) {
       res.status(500).json({ message: 'Unable to fetch movie details' });
   }
